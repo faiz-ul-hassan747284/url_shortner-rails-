@@ -1,0 +1,33 @@
+---
+development: &dev
+  host: <%= ENV["DB_HOST"] || Rails.application.credentials.db_host %>
+  user: <%= ENV["DB_USER"] || Rails.application.credentials.db_username %>
+  password: <%= ENV["DB_PASS"] || Rails.application.credentials.db_password %>
+  adapter: postgresql
+  database: url_shortner_api_development
+
+test:
+  <<: *dev
+  database: url_shortner_api_test
+
+review:
+  <<: *dev
+  database: foriio_creative_commerce_api_production
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= Rails.application.credentials.db_name %>
+  username: <%= Rails.application.credentials.db_username %>
+  password: <%= Rails.application.credentials.db_password %>
+  host: <%= Rails.application.credentials.db_host %>
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= Rails.application.credentials.db_name %>
+  username: <%= Rails.application.credentials.db_username %>
+  password: <%= Rails.application.credentials.db_password %>
+  host: <%= Rails.application.credentials.db_host %>
+  port: 5432
